@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>任务八</title>
+    
+</head>
+<body>
+    <p>猜数字游戏：10次以内猜出你想到的整数（1-1000）</p>
+    <p>使用了onclick，alert，confirm等</p>
+    <button>开始</button>
+</body>
+<script>
+    var button = document.getElementsByTagName('button')[0];
+    button.setAttribute("onclick", "kaishi()")
+    var mid = 500;
+    var times = 0;
+    var l = 1, r = 1001;
+    function kaishi()
+    {
+        l = 1, r = 1001;
+
+        if((l + r) % 2 == 0)
+        {
+            mid = (l + r) / 2;
+        }
+        else 
+        {
+            mid = (l + r - 1) / 2;
+        }
+        times = 0;
+        window.alert("请在心中想出一个1~1000内的整数，选完点确定")
+        while(l < r)
+        {
+            times ++;
+            if(window.confirm("这个数是" + mid + "，对嘛，对的话点确定，不对点取消") == false)
+            {
+                if(window.confirm("这个数大于" + mid + "，是吗") == true)
+                {
+                    l = mid;
+                }
+                else
+                {
+                    r = mid;
+                }
+                if((l + r) % 2 == 0)
+                {
+                    mid = (l + r) / 2;
+                }
+                else 
+                {
+                    mid = (l + r - 1) / 2;
+                }
+            }
+            else 
+            {
+                alert("只用" + times + "就猜到了，你看我厉不厉害");
+                break;
+            }
+            if(l >= r){
+                window.prompt("要想1~1000范围内的数哦，你是不是超出范围了呢，现在，告诉我你想的是哪个数吧")
+            }
+            
+        }
+    }
+</script>
+</html>
